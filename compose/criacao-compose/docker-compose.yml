@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  db: # Container de MySQL
+    image: mysql:5.7 # FROM mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always # todas as alterações são automaticamente atualizadas na aplicação
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: joao
+      MYSQL_USER: joao
+      MYSQL_PASSWORD: secret
+
+  wordpress: # os containers estão ligados por uma bridge criada automaticamente pelo compose
+    depends_on: # indica que o container do WordPress depende do db
+      - db
+    image: wordpress:latest
+    ports:
+      - "8000:80" # Necessario porque o wordpress precisa acessar a web
+    restart: always
+    environment: 
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: joao
+      WORDPRESS_DB_PASSWORD: joao
+      WORDPRESS_DB_NAME: wordpress
+volumes: # É preciso declarar todos os volumes usados no container
+  db_data: {} #Necessário para que o compose inicie os volumes da aplicação

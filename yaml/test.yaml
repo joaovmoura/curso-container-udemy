@@ -1,0 +1,7 @@
+obj:
+ t: 1
+ c: teste
+ d: True
+ obj2:
+  chave1: v1
+  chave2: v2
