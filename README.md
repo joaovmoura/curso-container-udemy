@@ -1,4 +1,4 @@
-# curso-docker-udemy
+# curso-container-udemy
 
 Alguns testes realizados no curso de docker do Matheus Battisti da udemy.
 
